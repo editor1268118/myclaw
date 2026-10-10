@@ -99,7 +99,7 @@ COPY --from=workspace-deps /out/openclaw-required-platform-packages /tmp/opencla
 
 # ── Production dependencies ────────────────────────────────────
 FROM dependency-inputs AS production-deps
-RUN --mount=type=cache,id=openclaw-pnpm-store,target=/root/.local/share/pnpm/store,sharing=locked \
+RUN --mount=type=cache,id=cacheKey=s/YOUR_SERVICE_ID-pnpm-store,sharing=locked \
     NODE_OPTIONS=--max-old-space-size=2048 pnpm install --frozen-lockfile --prod \
       --config.supportedArchitectures.os=linux \
       --config.supportedArchitectures.cpu="$(node -p 'process.arch')" \
